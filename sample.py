@@ -43,14 +43,14 @@ while not joy.Back():
         str1 = "X"
     else: 
         str1 = "N"   
-        
+
     #Control de joystick izquierdo para regulacion de velocidad de ruedas
-    if joy.leftX() > 0.4 or joy.leftX() < -0.4: 
+    if joy.leftX() > 0.3 or joy.leftX() < -0.3: 
         str2 = "%1.3f" % joy.leftX()
     else: 
         str2 = "0.0"
 
-    if joy.leftY() > 0.4 or joy.leftY() < -0.4:
+    if joy.leftY() > 0.3 or joy.leftY() < -0.3:
         str3 = "%1.3f" % joy.leftY()
     else:
         str3 = "0.0"
