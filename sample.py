@@ -43,9 +43,7 @@ while not joy.Back():
         str1 = "X"
     else: 
         str1 = "N"   
-
-    f1.close()
-
+        
     #Control de joystick izquierdo para regulacion de velocidad de ruedas
     if joy.leftX() > 0.4 or joy.leftX() < -0.4: 
         str2 = "%1.3f" % joy.leftX()
@@ -59,5 +57,6 @@ while not joy.Back():
 
     f1 = open("../piTankEx/xbox360.txt","w+")
     f1.write(str1 + " " + str2 + " " + str3)
+    f1.close()
 # Close out when done
 joy.close()
