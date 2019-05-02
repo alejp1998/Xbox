@@ -35,6 +35,8 @@ while not joy.Back():
         str1 = "D"
     elif joy.rightTrigger() > 0.5:
         str1 = "T"
+    elif joy.Start():
+        str1 = 'E'
     elif joy.A(): 
         str1 = "A"
     elif joy.B(): 
