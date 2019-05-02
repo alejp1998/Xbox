@@ -40,7 +40,7 @@ class Joystick:
     Usage:
         joy = xbox.Joystick()
     """
-    def __init__(self,refreshRate = 10):
+    def __init__(self,refreshRate = 50):
         self.proc = subprocess.Popen(['xboxdrv','--no-uinput','--detach-kernel-driver'], stdout=subprocess.PIPE, bufsize=0)
         self.pipe = self.proc.stdout
         #
