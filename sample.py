@@ -19,30 +19,64 @@ def showIf(boolean, ifTrue, ifFalse=" "):
 
 # Instantiate the controller
 joy = xbox.Joystick()
-
+nwait = 0
 # Show various axis and button states until Back button is pressed
-print("Xbox controller sample: Press Back button to exit")
+print("Xbox controller printing in piTankEx")
 while not joy.Back():
-    # Show connection status
-    show("Connected:")
-    showIf(joy.connected(), "Y", "N")
-    # Left analog stick
-    show("  Left X/Y:", fmtFloat(joy.leftX()), "/", fmtFloat(joy.leftY()))
-    # Right trigger
-    show("  RightTrg:", fmtFloat(joy.rightTrigger()))
-    # A/B/X/Y buttons
-    show("  Buttons:")
-    showIf(joy.A(), "A")
-    showIf(joy.B(), "B")
-    showIf(joy.X(), "X")
-    showIf(joy.Y(), "Y")
-    # Dpad U/D/L/R
-    show("  Dpad:")
-    showIf(joy.dpadUp(),    "U")
-    showIf(joy.dpadDown(),  "D")
-    showIf(joy.dpadLeft(),  "L")
-    showIf(joy.dpadRight(), "R")
-    # Move cursor back to start of line
-    show(chr(13))
+
+    #Control de los botones pulsados
+    f1 = open("../piTankEx/xbox360-1.txt","w+")
+
+    if nwait < 19 and nwait != 0 :
+        nwait += 1
+    elif joy.rightX() > 0.5:
+        f1.write("R")
+        nwait = 1
+    elif joy.rightX() < -0.5:
+        f1.write("L")
+        nwait = 1
+    elif joy.rightY() > 0.5:
+        f1.write("U")
+        nwait = 1
+    elif joy.rightY() < -0.5:
+        f1.write("D")
+        nwait = 1
+    elif joy.A(): 
+        f1.write("A")
+        nwait = 1
+    elif joy.B(): 
+        f1.write("B")
+        nwait = 1
+    elif joy.Y(): 
+        f1.write("Y")
+        nwait = 1
+    elif joy.X(): 
+        f1.write("X")
+        nwait = 1
+    else: 
+        f1.write("N")
+        nwait = 0    
+
+    f1.close()
+
+    #Control de joystick izquierdo para regulacion de velocidad de ruedas
+    f2 = open("../piTankEx/xbox360-2.txt","w+")
+
+    if joy.leftX() > 0.2 or joy.leftX() < -0.2: 
+        f2.write("%1.3f" % joy.leftX())
+    else: 
+        f2.write("0.0")
+    
+    f2.close()
+
+    f3 = open("../piTankEx/xbox360-3.txt","w+")
+
+    if joy.leftY() > 0.2 or joy.leftY() < -0.2:
+        f3.write("%1.3f" % joy.leftY())
+    else:
+        f3.write("0.0")
+    
+    f3.close()
+
 # Close out when done
 joy.close()
