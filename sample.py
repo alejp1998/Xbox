@@ -57,6 +57,8 @@ while not joy.Back():
         str2 = "U"
     elif joy.rightY() < -0.5:
         str2 = "D" 
+    else: 
+        str2 = "N" 
 
     #Control de joystick izquierdo para regulacion de velocidad de ruedas
     if joy.leftX() > 0.3 or joy.leftX() < -0.3: 
