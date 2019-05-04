@@ -25,15 +25,7 @@ print("Xbox controller printing in piTankEx")
 while not joy.Back():
 
     #Control de los botones pulsados
-    if joy.rightX() > 0.5:
-        str1 = "R"
-    elif joy.rightX() < -0.5:
-        str1 = "L"
-    elif joy.rightY() > 0.5:
-        str1 = "U"
-    elif joy.rightY() < -0.5:
-        str1 = "D"
-    elif joy.dpadRight():
+    if joy.dpadRight():
         str1 = "r"
     elif joy.dpadLeft():
         str1 = "l"
@@ -54,21 +46,31 @@ while not joy.Back():
     elif joy.X(): 
         str1 = "X"
     else: 
-        str1 = "N"   
+        str1 = "N"  
+
+    #Control de joystick derecho como digital
+    if joy.rightX() > 0.5:
+        str2 = "R"
+    elif joy.rightX() < -0.5:
+        str2 = "L"
+    elif joy.rightY() > 0.5:
+        str2 = "U"
+    elif joy.rightY() < -0.5:
+        str2 = "D" 
 
     #Control de joystick izquierdo para regulacion de velocidad de ruedas
     if joy.leftX() > 0.3 or joy.leftX() < -0.3: 
-        str2 = "%1.3f" % joy.leftX()
+        str3 = "%1.3f" % joy.leftX()
     else: 
-        str2 = "0.0"
-
-    if joy.leftY() > 0.3 or joy.leftY() < -0.3:
-        str3 = "%1.3f" % joy.leftY()
-    else:
         str3 = "0.0"
 
+    if joy.leftY() > 0.3 or joy.leftY() < -0.3:
+        str4 = "%1.3f" % joy.leftY()
+    else:
+        str4 = "0.0"
+
     f1 = open("../piTankEx/xbox360.txt","w+")
-    f1.write(str1 + " " + str2 + " " + str3)
+    f1.write(str1 + " " + str2 + " " + str3 + " " + str4)
     f1.close()
 # Close out when done
 joy.close()
